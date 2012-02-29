@@ -10,7 +10,8 @@ endfunction
 
 function! s:get_current_git_branch() abort
   " http://stackoverflow.com/questions/2863756/is-there-a-single-git-command-to-get-the-current-tag-branch-and-commit
-  let branch = s:sub(system('git describe --contains --all HEAD 2> /dev/null'),'\n$','')
+  " let branch = s:sub(system('git describe --contains --all HEAD 2> /dev/null'),'\n$','')
+  let branch = s:sub(system('git rev-parse --abbrev-ref HEAD 2> /dev/null'),'\n$','')
   if empty(branch)
     throw 'Git branch is empty - are you in a git repo?'
   endif
